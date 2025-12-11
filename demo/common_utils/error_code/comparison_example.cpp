@@ -123,7 +123,7 @@ namespace category_approach {
     }
 
     // make_error_code 函数
-    inline std::error_code make_error_code(ErrorCode e) {
+    inline std::common_utils_error_code make_error_code(ErrorCode e) {
         return {static_cast<int>(e), my_category()};
     }
 
@@ -134,7 +134,7 @@ namespace category_approach {
         ErrorCode ec = ErrorCode::FILE_NOT_FOUND;
 
         // ✅ 可以转换为 std::error_code
-        std::error_code std_ec = make_error_code(ec);
+        std::common_utils_error_code std_ec = make_error_code(ec);
 
         // ✅ 可以使用标准库功能
         if (std_ec) {
@@ -148,7 +148,7 @@ namespace category_approach {
         }
 
         // ✅ 可以比较不同类别的错误
-        std::error_code other_ec = std::make_error_code(std::errc::no_such_file_or_directory);
+        std::common_utils_error_code other_ec = std::make_error_code(std::errc::no_such_file_or_directory);
         if (std_ec.category() != other_ec.category()) {
             std::cout << "Different error categories\n";
         }
@@ -207,7 +207,7 @@ namespace hybrid_approach {
         return instance;
     }
 
-    inline std::error_code make_error_code(ErrorCode e) {
+    inline std::common_utils_error_code make_error_code(ErrorCode e) {
         return {static_cast<int>(e), my_category()};
     }
 
@@ -223,7 +223,7 @@ namespace hybrid_approach {
         }
 
         // ✅ 高级使用（需要时可以用 error_code）
-        std::error_code std_ec = make_error_code(ec);
+        std::common_utils_error_code std_ec = make_error_code(ec);
         if (std_ec) {
             std::cerr << "Advanced: " << std_ec.message() << "\n";
         }
@@ -270,11 +270,11 @@ namespace practical_comparison {
             std::string message(int) const override { return "Error"; }
         };
         inline const Cat& cat() { static Cat c; return c; }
-        inline std::error_code make_error_code(ErrorCode e) {
+        inline std::common_utils_error_code make_error_code(ErrorCode e) {
             return {static_cast<int>(e), cat()};
         }
 
-        std::error_code loadFile(const std::string& path) {
+        std::common_utils_error_code loadFile(const std::string& path) {
             return make_error_code(ErrorCode::Error);
         }
 
@@ -287,7 +287,7 @@ namespace practical_comparison {
             }
         }
 
-        void processError(const std::error_code& ec) {
+        void processError(const std::common_utils_error_code& ec) {
             // 可以统一处理所有错误
             std::cerr << ec.category().name() << ": " << ec.message() << "\n";
         }
@@ -331,7 +331,7 @@ namespace performance_comparison {
         std::cout << "  Cost: 直接整数比较\n";
 
         std::cout << "\nCategory approach:\n";
-        std::cout << "  sizeof(std::error_code): " << sizeof(std::error_code) << " bytes\n";
+        std::cout << "  sizeof(std::error_code): " << sizeof(std::common_utils_error_code) << " bytes\n";
         std::cout << "  Cost: 两个指针（错误值 + category指针）\n";
         std::cout << "  Note: Category对象是单例，无额外内存\n";
 

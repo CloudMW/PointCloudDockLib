@@ -10,7 +10,7 @@
 #include <pcl/segmentation/extract_clusters.h>
 
 
-namespace pcdl::segmentation
+namespace pcl_utils::segmentation
 {
     template <typename PointT>
     bool euclideanClustering(const typename pcl::PointCloud<PointT>::ConstPtr& cloud,

@@ -2,31 +2,32 @@
 // Created by Mengfanyong on 2025/12/4.
 //
 
-#include "pcdl/debug/pcdl_debug.hpp"
+#include "common_utils/debug/common_utils_debug.hpp"
 #include "spdlog/spdlog.h"
+using namespace  common_utils;
 int main() {
-    // ÉèÖÃÈ«¾ÖdebugµÈ¼¶ÎªPROCESS
+    // è®¾ç½®å…¨å±€debugç­‰çº§ä¸ºPROCESS
     DebugConfig::setVisDebugLevel(DebugLevel::PROCESS);
     DebugConfig::setLogDebugLevel(DebugLevel::PROCESS);
 
-    // Ê¾Àı£º¸ù¾İ²»Í¬µÈ¼¶Ö´ĞĞ²»Í¬µÄdebug´úÂë
+    // ç¤ºä¾‹ï¼šæ ¹æ®ä¸åŒç­‰çº§æ‰§è¡Œä¸åŒçš„debugä»£ç 
     if (DebugConfig::shouldExecuteLog(DebugLevel::RESULT)) {
-        spdlog::info("[RESULT] ÕâÊÇ½á¹ûµÈ¼¶µÄÈÕÖ¾ĞÅÏ¢¡£");
+        spdlog::info("[RESULT] è¿™æ˜¯ç»“æœç­‰çº§çš„æ—¥å¿—ä¿¡æ¯ã€‚");
     }
 
     if (DebugConfig::shouldExecuteLog(DebugLevel::PROCESS)) {
-        spdlog::info("[PROCESS] ÕâÊÇ¹ı³ÌµÈ¼¶µÄÈÕÖ¾ĞÅÏ¢¡£");
+        spdlog::info("[PROCESS] è¿™æ˜¯è¿‡ç¨‹ç­‰çº§çš„æ—¥å¿—ä¿¡æ¯ã€‚");
     }
 
     if (DebugConfig::shouldExecuteLog(DebugLevel::VERBOSE)) {
-        spdlog::info("[VERBOSE] ÕâÊÇÏêÏ¸µÈ¼¶µÄÈÕÖ¾ĞÅÏ¢¡£");
+        spdlog::info("[VERBOSE] è¿™æ˜¯è¯¦ç»†ç­‰çº§çš„æ—¥å¿—ä¿¡æ¯ã€‚");
     }
 
     if (DebugConfig::shouldExecuteLog(DebugLevel::POINTSAVE)) {
-        spdlog::info("[POINTSAVE] ÕâÊÇ±£´æµãÔÆµÈ¼¶µÄÈÕÖ¾ĞÅÏ¢¡£");
+        spdlog::info("[POINTSAVE] è¿™æ˜¯ä¿å­˜ç‚¹äº‘ç­‰çº§çš„æ—¥å¿—ä¿¡æ¯ã€‚");
     }
     if (DebugConfig::shouldExecuteVis(DebugLevel::RESULT)) {
-        spdlog::info("[RESULT] ÕâÊÇ½á¹ûµÈ¼¶µÄÏÔÊ¾ĞÅÏ¢¡£");
+        spdlog::info("[RESULT] è¿™æ˜¯ç»“æœç­‰çº§çš„æ˜¾ç¤ºä¿¡æ¯ã€‚");
     }
 
     return 0;

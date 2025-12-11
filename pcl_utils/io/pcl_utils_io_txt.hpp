@@ -10,7 +10,7 @@
 #include <iosfwd>
 #include <direct.h>
 #include <fstream>
-namespace pcdl
+namespace pcl_utils
 {
     namespace io
     {

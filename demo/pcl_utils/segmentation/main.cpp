@@ -3,9 +3,9 @@
 //
 #include <pcl/common/common.h>
 
-#include "pcdl/visualization/pcdl_visualization.hpp"
-#include "pcdl/io/pcdl_io_txt.hpp"
-#include "pcdl/segmentation/pcdl_clusters.hpp"
+#include "pcl_utils/visualization/pcl_utils_visualization.hpp"
+#include "pcl_utils/io/pcl_utils_io_txt.hpp"
+#include "pcl_utils/segmentation/pcl_utils_clusters.hpp"
 #include "spdlog/spdlog.h"
 
 typedef  pcl::PointXYZI PointT;
@@ -18,7 +18,7 @@ int main() {
     auto cloud_2 = std::make_shared<pcl::PointCloud<pcl::PointXYZI>>();
 
 
-    if (pcdl::io::readTXTToPCLXYZI(file_1,cloud_1)&&pcdl::io::readTXTToPCLXYZI(file_2,cloud_2)) {
+    if (pcl_utils::io::readTXTToPCLXYZI(file_1,cloud_1)&&pcl_utils::io::readTXTToPCLXYZI(file_2,cloud_2)) {
 
         // clusters
         {
@@ -27,9 +27,9 @@ int main() {
                 std::vector<pcl::PointCloud<PointT>::Ptr> clusters;
                 auto cloudRGB = std::make_shared<pcl::PointCloud<pcl::PointXYZRGB> >();
 
-                pcdl::segmentation::euclideanClustering<PointT>(cloud_2, clusters, cloudRGB,10 ,10 ,100000);
+                pcl_utils::segmentation::euclideanClustering<PointT>(cloud_2, clusters, cloudRGB,10 ,10 ,100000);
                 spdlog::info("clusters size: {}",clusters.size());
-                pcdl::visualization::showPointCloud<pcl::PointXYZRGB>("clusters", cloudRGB);
+                pcl_utils::visualization::showPointCloud<pcl::PointXYZRGB>("clusters", cloudRGB);
             }
         }
 

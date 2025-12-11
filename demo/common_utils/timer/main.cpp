@@ -1,11 +1,13 @@
 //
 // Created by Mengfanyong on 2025/12/11.
 //
-#include "AlgorithmTimer.hpp"
+#include "common_utils/time/common_utils_timer.hpp"
 #include <thread>
 
+#include "time/common_utils_timer.hpp"
+using namespace common_utils;
 void example_usage() {
-    AlgorithmTimer timer;
+    TimerUtils timer;
 
     // 方式1: 手动start/stop
     timer.start("preprocessing");
@@ -32,18 +34,24 @@ void example_usage() {
 }
 
 void example_scoped_timer() {
-    AlgorithmTimer timer;
+    TimerUtils timer;
 
     // 方式2: 使用RAII风格(更安全,自动stop)
     {
-        AlgorithmTimer::ScopedTimer st(timer, "stage1");
+        TimerUtils::ScopedTimer st(timer, "stage1");
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     } // 自动stop
 
     {
-        AlgorithmTimer::ScopedTimer st(timer, "stage2");
+        TimerUtils::ScopedTimer st(timer, "stage2");
         std::this_thread::sleep_for(std::chrono::milliseconds(150));
     }
 
     timer.printSummary();
+}
+
+int main() {
+    example_usage();
+    example_scoped_timer();
+    return 0;
 }

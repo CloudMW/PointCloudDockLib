@@ -8,7 +8,7 @@
 #include <spdlog/spdlog.h>
 #include <random>
 #include <initializer_list>
-namespace pcdl
+namespace pcl_utils
 {
     namespace visualization
     {
