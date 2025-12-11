@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.0)
-project(PointCloudDockLib)
+project(VisionUtils)
 set(CMAKE_CXX_STANDARD 17)
 
 
