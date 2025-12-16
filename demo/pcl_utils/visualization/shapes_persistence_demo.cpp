@@ -79,17 +79,6 @@ int main() {
     // 第二次显示 - 所有形状都会保留
     container.show();
 
-
-    // 4. 添加平面 - 灰色，z=0平面
-    pcl::ModelCoefficients plane_coeff;
-    plane_coeff.values.resize(4);
-    // 平面方程: ax + by + cz + d = 0
-    plane_coeff.values[0] = 0.0f;  // a
-    plane_coeff.values[1] = 0.0f;  // b
-    plane_coeff.values[2] = 1.0f;  // c
-    plane_coeff.values[3] = -1.0f; // d (z = 1)
-    container.addPlane("plane1", plane_coeff, 128, 128, 128);
-    container.show();
     std::cout << "\n=== 演示完成 ===\n";
     std::cout << "总结：\n";
     std::cout << "  ✓ 几何形状在 show() 调用之间保持持久化\n";
