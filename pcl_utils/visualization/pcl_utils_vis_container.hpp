@@ -23,10 +23,15 @@ namespace pcl_utils {
          * @brief 可视化容器类 - 用于存储和管理多个点云的可视化
          *
          * 使用示例:
-         *   PCLVisContainer vis_container;
-         *   vis_container.addPointCloud("cloud1", cloud1, 3.0);
-         *   vis_container.addPointCloud("cloud2", cloud2);
-         *   vis_container.showAll();
+         *   @code
+        *   PCLVisContainer vis_container;
+        *   vis_container.addPointCloud("cloud1", cloud1, 3.0);
+        *   vis_container.addPointCloud("cloud2", cloud2);
+        *   vis_container.show();
+        *@endcode
+         *
+         *
+         *
          */
         class PCLVisContainer {
         private:

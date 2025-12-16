@@ -7,6 +7,8 @@
 #include <pcl/ModelCoefficients.h>
 #include <pcl/point_cloud.h>
 #include <pcl/filters/crop_box.h>
+#include <pcl/point_types.h>
+#include <pcl/segmentation/sac_segmentation.h>
 #include <pcl/filters/voxel_grid.h>
 #include <pcl/filters/project_inliers.h>
 #include <pcl/sample_consensus/sac_model.h>
@@ -18,29 +20,14 @@ namespace pcl_utils::filters {
     template<typename PointT>
     void projectInlier(
         const typename pcl::PointCloud<PointT>::ConstPtr &cloud,
-        pcl::SacModel
-        const pcl::ModelCoefficients::Ptr &coefficients,
+        pcl::SacModel sac_model,
+        const pcl::ModelCoefficients::Ptr  &coefficients,
         const typename pcl::PointCloud<PointT>::Ptr &projected_cloud
         )
     {
-        // Create the segmentation object for plane segmentation
-        pcl::SACSegmentation<pcl::PointXYZ> seg;
-        seg.setOptimizeCoefficients(true);
-        seg.setModelType(pcl::SACMODEL_PLANE);
-        seg.setMethodType(pcl::SAC_RANSAC);
-        seg.setDistanceThreshold(0.01);
-
-        // Set the input cloud for segmentation
-        seg.setInputCloud(cloud);
-
-        // Call segment function to obtain set of inlier indices
-        pcl::ModelCoefficients::Ptr coefficients(new pcl::ModelCoefficients);
-        pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
-        seg.segment(*inliers, *coefficients);
-
         // Now project the points onto the detected plane
         pcl::ProjectInliers<pcl::PointXYZ> proj;
-        proj.setModelType(pcl::SACMODEL_PLANE);
+        proj.setModelType(sac_model);
         proj.setInputCloud(cloud);
         proj.setModelCoefficients(coefficients);
         proj.filter(*projected_cloud);
