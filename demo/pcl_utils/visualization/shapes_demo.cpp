@@ -31,7 +31,7 @@ int main() {
     container.addSphere("sphere1", sphere_center, 0.5, 255, 0, 0);
 
     // 2. 添加立方体 - 绿色
-    container.addCube("cube1", -2.0, -1.0, -0.5, 0.5, -0.5, 0.5, 0, 255, 0);
+    //container.addCube("cube1", -2.0, -1.0, -0.5, 0.5, -0.5, 0.5, 0, 255, 0);
 
     // 3. 添加圆柱体 - 蓝色
     pcl::ModelCoefficients cylinder_coeff;
@@ -44,7 +44,7 @@ int main() {
     cylinder_coeff.values[4] = 0.0f;  // 方向 y
     cylinder_coeff.values[5] = 1.0f;  // 方向 z
     cylinder_coeff.values[6] = 0.3f;  // 半径
-    container.addCylinder("cylinder1", cylinder_coeff, 0, 0, 255);
+    //container.addCylinder("cylinder1", cylinder_coeff, 0, 0, 255);
 
     // 4. 添加平面 - 灰色，z=0平面
     pcl::ModelCoefficients plane_coeff;

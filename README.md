@@ -12,7 +12,10 @@ PointCloudDockLibrary(pcdl)是一个用于处理码头场景的C++库。
   - 使用PCL（Point Cloud Library）进行点云处理。
 # 代码风格：
 参考 Google C++ Style Guide 以及PCL的代码风格。
+
 https://zh-google-styleguide.readthedocs.io/en/latest/google-cpp-styleguide/contents.html
+
+https://pcl.readthedocs.io/projects/advanced/en/master/pcl_style_guide.html#pcl-style-guide
 ## 命名规范 
 - 文件名：
   - 使用小写字母和下划线分隔单词（例如：point_cloud_processor.cpp）。
