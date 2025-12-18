@@ -8,6 +8,8 @@
 #include <spdlog/spdlog.h>
 #include <random>
 #include <initializer_list>
+#include <pcl/common/impl/centroid.hpp>
+
 namespace pcl_utils
 {
     namespace visualization
@@ -41,6 +43,7 @@ namespace pcl_utils
             if (cloud->empty() || target_cloud->empty())
             {
                 //XLOG_ERROR("[showPointCloud] 输入点云为空！");
+                SPDLOG_INFO("[showPointCloud] empty cloud: {}", window_name);
                 return false;
             }
             //11
@@ -60,7 +63,7 @@ namespace pcl_utils
             // 添加点云到可视化窗口（参数：点云ID、点云对象）
             // 点云ID用于区分多个点云，相同ID会覆盖
             viewer.addPointCloud<PointT>(cloud, "input_cloud");
-            pcl::visualization::PointCloudColorHandlerCustom<PointT> targetColor(cloud, 255, 0, 0);
+            pcl::visualization::PointCloudColorHandlerCustom<PointT> targetColor(target_cloud, 255, 0, 0);
             viewer.addPointCloud<PointT>(target_cloud, targetColor, "target_cloud");
 
             // 设置点云显示大小（默认1，值越大点越明显）

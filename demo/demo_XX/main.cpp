@@ -3,7 +3,4 @@
 //
 
 //#include "pcdl/debug/pcdl_debug.hpp"
-
-#include <gtest/gtest.h>
-
-ASSERT_QE(5,2+3);
+#include "common_utils//io/common_utils_io.hpp"
