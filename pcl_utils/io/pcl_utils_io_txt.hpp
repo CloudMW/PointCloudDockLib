@@ -8,8 +8,10 @@
 #include <pcl/point_types.h>
 #include <spdlog/spdlog.h>
 #include <iosfwd>
-//#include <direct.h>
 #include <fstream>
+#ifdef _WIN32
+#include <direct.h>
+#endif
 namespace pcl_utils
 {
     namespace io
