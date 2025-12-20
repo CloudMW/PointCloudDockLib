@@ -4,6 +4,7 @@
 
 #ifndef POINTCLOUDDOCKLIB_PCDL_VISUALIZATION_H
 #define POINTCLOUDDOCKLIB_PCDL_VISUALIZATION_H
+#include "pcl_utils/common/pcl_utils_cloud_safety.hpp"
 #include <pcl/visualization/pcl_visualizer.h>
 #include <spdlog/spdlog.h>
 #include <random>
@@ -40,6 +41,16 @@ namespace pcl_utils
         )
         {
             // 检查点云是否为空
+            auto s1 = cloud_safety::check<PointT>(cloud, 0);
+            auto s2 = cloud_safety::check<PointT>(cloud, 0);
+            if (s1 != cloud_safety::CloudStatus::OK) {
+                cloud_safety::printError("showPointCloud", s1);
+                return false;
+            }
+            if (s2 != cloud_safety::CloudStatus::OK) {
+                cloud_safety::printError("showPointCloud", s2);
+                return false;
+            }
             if (cloud->empty() || target_cloud->empty())
             {
                 //XLOG_ERROR("[showPointCloud] 输入点云为空！");
@@ -120,7 +131,7 @@ namespace pcl_utils
          * showPointCloud<pcl::PointXYZ>("My Window", cloud1, cloud2, cloud3);
          */
         template <typename PointT, typename... Args>
-        bool showPointCloud(const std::string& window_name, Args... args)
+        bool showPointCloudMulti(const std::string& window_name, Args... args)
         {
             // 创建可视化器
             pcl::visualization::PCLVisualizer::Ptr viewer(
