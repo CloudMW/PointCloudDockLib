@@ -18,8 +18,8 @@ namespace pcl_utils {
         struct ROIData {
             typename pcl::PointCloud<PointT>::ConstPtr input_cloud;
             typename pcl::PointCloud<PointT>::Ptr roi_cloud;
-            PointT min_point;
-            PointT max_point;
+            pcl::PointXYZ min_point;
+            pcl::PointXYZ max_point;
             bool is_success = false;
         };
 
@@ -74,7 +74,7 @@ namespace pcl_utils {
             if (cloud_roi->empty())
                 return;
 
-            PointT min_pt, max_pt;
+            pcl::PointXYZ min_pt, max_pt;
             min_pt.x = min_pt.y = min_pt.z = std::numeric_limits<float>::max();
             max_pt.x = max_pt.y = max_pt.z = std::numeric_limits<float>::lowest();
 
@@ -147,7 +147,7 @@ namespace pcl_utils {
             // 将viewer赋值给全局变量，供回调函数使用
             g_viewer = viewer;
 
-            viewer->addPointCloud(cloud, "cloud_1");
+            viewer->addPointCloud<PointT>(cloud, "cloud_1");
             viewer->setBackgroundColor(0, 0, 0);
             viewer->setPointCloudRenderingProperties(
                 pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 2, "cloud_1");
