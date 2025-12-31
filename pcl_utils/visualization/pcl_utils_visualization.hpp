@@ -34,6 +34,7 @@ namespace pcl_utils
                             const std::string& window_name,
                             int cloud_size = 1,
                             int target_cloud_size = 2,
+                            int axis_size = 100,
                             const pcl::PointXYZ& cam_pos = pcl::PointXYZ(4000, 3000, 2000),
                             const pcl::PointXYZ& view_point = pcl::PointXYZ(200, 80, 600),
                             const pcl::PointXYZ& cam_up = pcl::PointXYZ(-0.15, -0.17, 0.97)
@@ -86,7 +87,7 @@ namespace pcl_utils
 
             viewer.setWindowName(window_name);
             // 添加坐标系（可选，帮助定位，参数：坐标系大小）
-            viewer.addCoordinateSystem(1000.0);
+            viewer.addCoordinateSystem(axis_size);
             // 启动可视化循环（阻塞，直到关闭窗口）
             spdlog::info("[showPointCloud] show {} ...", window_name);
             bool first_frame = true;
