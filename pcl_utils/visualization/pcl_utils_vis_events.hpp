@@ -12,7 +12,7 @@
 #include <pcl_utils/common/pcl_utils_cloud_safety.hpp>
 pcl::visualization::PCLVisualizer::Ptr g_viewer;
 
-namespace pc_utils {
+namespace pcl_utils {
     namespace vis_events {
         template<typename PointT>
         struct ROIData {

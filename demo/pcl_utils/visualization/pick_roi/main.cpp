@@ -16,7 +16,7 @@ int main() {
     auto cloud_1 = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
     if (pcl_utils::io::readTXTToPCLXYZ(file_1, cloud_1)) {
         pcl::PointXYZ min_point,max_point;
-        pc_utils::vis_events::areaPickEvent<pcl::PointXYZ>(cloud_1,min_point,max_point);
+        pcl_utils::vis_events::areaPickEvent<pcl::PointXYZ>(cloud_1,min_point,max_point);
         spdlog::info("ROI Min Point: [{}, {}, {}]", min_point.x, min_point.y, min_point.z);
         spdlog::info("ROI Max Point: [{}, {}, {}]", max_point.x, max_point.y, max_point.z);
         pcl_utils::visualization::showAABB<pcl::PointXYZ>(cloud_1, min_point, max_point);
